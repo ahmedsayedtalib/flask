@@ -1,24 +1,20 @@
+import os
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost:5432/customers'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
 @app.route('/')
 def index():
-    return '<h1>Hello, World!</h1>'
-
-@app.route('/info')
-def info():
-    return '<h1>This is my first flask app!</h1>'
-
-## DYNAMIC ROUTES
-
-@app.route('/customers/<user>')
-def customer(user):
-    return "<h3>Hello, {}</h3>".format(user.title())
-
-@app.route('/letter/<num>')
-def letter_num(num):
-    return "<h1>Letter number is {}</h1>".format(num[10])
+    return "Customers service is running"
 
 if __name__ == "__main__":
     app.run(debug=True)
