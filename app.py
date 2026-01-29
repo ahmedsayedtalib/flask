@@ -24,6 +24,11 @@ class Customer(db.Model):
     is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+    def __init__(self,name,email):
+        self.name = name
+        self.email = email
+        return f"Hello, {name}. {email}"
+
     def __repr__(self):
         return f"<Customer {self.email}>"
 
