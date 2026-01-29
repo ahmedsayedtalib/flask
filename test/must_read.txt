@@ -1,0 +1,85 @@
+FLASK DATABASE MIGRATIONS (Flask-Migrate)
+=======================================
+
+1) INSTALL REQUIRED PACKAGES
+----------------------------
+Make sure your virtual environment is activated, then run:
+
+pip install Flask-Migrate psycopg2-binary Flask-SQLAlchemy 
+
+or with the requirements.txt file by running from the terminal:-
+
+pip install -r requirements.txt (But must write all of the above libraries inside the file)
+
+
+2) UPDATE app.py / basic.py
+---------------------------
+Add Flask-Migrate to your Flask app:
+
+from flask_migrate import Migrate
+
+migrate = Migrate(app, db)
+
+Make sure `app` and `db` are already defined before this line.
+
+
+3) SET FLASK ENVIRONMENT VARIABLES
+---------------------------------
+
+Linux / macOS (bash/zsh):
+
+export FLASK_APP=basic.py
+export FLASK_ENV=development
+
+Optional (recommended):
+export FLASK_DEBUG=1
+
+
+Windows (PowerShell):
+
+setx FLASK_APP basic.py
+setx FLASK_ENV development
+
+
+4) INITIALIZE MIGRATIONS (RUN ONCE)
+----------------------------------
+This creates the migrations folder:
+
+flask db init
+
+
+5) CREATE A MIGRATION FILE
+--------------------------
+After modifying models (adding tables/columns):
+
+flask db migrate -m "initial migration"
+
+
+6) APPLY MIGRATION TO DATABASE
+------------------------------
+This applies changes to PostgreSQL:
+
+flask db upgrade
+
+
+7) COMMON COMMANDS
+------------------
+Rollback last migration:
+flask db downgrade
+
+Check migration history:
+flask db history
+
+Show current revision:
+flask db current
+
+
+8) IMPORTANT NOTES
+------------------
+- Never edit migration files unless you know what you're doing
+- Always run `flask db migrate` AFTER model changes
+- Always run `flask db upgrade` to apply changes
+- Flask-Migrate uses Alembic under the hood
+
+
+DONE ✅
