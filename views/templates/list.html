@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}List Puppies{% endblock %}
+
+{% block content %}
+<h2>All Puppies</h2>
+{% if puppies %}
+    <table class="table table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pup in puppies %}
+            <tr>
+                <td>{{ pup.id }}</td>
+                <td>{{ pup.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No puppies added yet. Go to <a href="{{ url_for('add_pup') }}">Add Puppy</a>.</p>
+{% endif %}
+{% endblock %}

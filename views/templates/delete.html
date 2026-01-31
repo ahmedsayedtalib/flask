@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Puppy{% endblock %}
+
+{% block content %}
+<h2>Delete a Puppy</h2>
+<form method="POST" class="mt-3">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.id.label(class="form-label") }}
+        {{ form.id(class="form-control", placeholder="Enter puppy ID to delete") }}
+    </div>
+    <div class="mb-3">
+        {{ form.submit(class="btn btn-danger") }}
+    </div>
+</form>
+{% endblock %}
